@@ -24,7 +24,7 @@ function part1(input, sequences) {
     return sequences.map(sequence => {
         let lastOutput = 0;
 
-        return sequence.map(phase => lastOutput = (new IntCodeComputer(input, [phase, lastOutput])).run().output.slice(-1).pop()).pop();
+        return sequence.map(phase => lastOutput = (new IntCodeComputer(input, [phase, lastOutput])).run().pop()).pop();
     }).sort((a,b) => b-a)[0];
 }
 
@@ -34,7 +34,7 @@ function part2(input, sequences) {
         let lastOutput = 0, nextAmp = 0;
 
         while(programs[sequence.length -1].terminated != true) {
-            lastOutput =  programs[nextAmp].run([lastOutput], 1).output.slice(-1).pop() || lastOutput;
+            lastOutput =  programs[nextAmp].run([lastOutput], 1).pop() || lastOutput;
 
             nextAmp = (nextAmp >= sequence.length-1) ? 0 : nextAmp+1;
         }

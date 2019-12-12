@@ -18,6 +18,7 @@ class IntCodeComputer {
         this.inputs = inputs;
         this.pointer = 0;
         this.relativeBase = 0;
+        this.terminated = false;
     }
 
     getAddress(paramId) {
@@ -100,7 +101,7 @@ class IntCodeComputer {
             }
         }
 
-        return this;
+        return this.output;
     }
 }
 
