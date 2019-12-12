@@ -13,13 +13,11 @@ class IntCodeComputer {
     EQ = 8;
     CHANGE_RELATIVE_BASE = 9;
 
-    constructor(memory, inputs) {
+    constructor(memory, inputs = []) {
         this.memory = [... memory];
         this.inputs = inputs;
         this.pointer = 0;
         this.relativeBase = 0;
-        this.terminated = false;
-        this.output = [];
     }
 
     getAddress(paramId) {
@@ -48,7 +46,12 @@ class IntCodeComputer {
         return addr;
     }
 
-    run() {
+    run(newInputs = [], breakAfter = 0) {
+        this.inputs = this.inputs.concat(newInputs);
+
+        this.output = [];
+        this.terminated = false;
+
         while(this.terminated != true) {
             if (this.memory[this.pointer] == 99) {
                 this.terminated = true;
@@ -90,6 +93,10 @@ class IntCodeComputer {
                     this.relativeBase += this.memory[this.getAddress(1)]
                     this.pointer += 2;
                     break;
+            }
+
+            if (breakAfter > 0 && this.output.length > 0 && this.output.length % breakAfter == 0) {
+                break;
             }
         }
 
