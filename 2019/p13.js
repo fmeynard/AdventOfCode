@@ -15,7 +15,9 @@ function part2(input) {
 
     let computer = new IntCodeComputer(input);
     while(!computer.terminated) {
-        let [x,y,z] = computer.setInputs(paddle && ball ? [Math.max(-1, Math.min(ball.x - paddle.x, 1))] : [0]).run([], 3);
+        let [x,y,z] = computer
+            .setInputs(paddle && ball ? [Math.max(-1, Math.min(ball.x - paddle.x, 1))] : [0])
+            .run([], 3);
 
         if (x == -1 && y == 0) {
             score = z;
