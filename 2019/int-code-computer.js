@@ -47,6 +47,12 @@ class IntCodeComputer {
         return addr;
     }
 
+    setInputs(inputs = []) {
+        this.inputs = inputs;
+
+        return this;
+    }
+
     run(newInputs = [], breakAfter = 0) {
         this.inputs = this.inputs.concat(newInputs);
 
