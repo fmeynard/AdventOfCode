@@ -45,8 +45,8 @@ function reaction(receipts, n) {
     return triggerReaction('FUEL', n);
 }
 
-function part2(receipts) {
-    let ore = 0, previousOre = 0, fuel = 1, increment = 1;
+function part2(receipts, startFuel = 1000000) {
+    let ore = 0, previousOre = 0, fuel = startFuel, increment = startFuel;
     let targetOre = 1e12;
 
     while (true) {
@@ -75,5 +75,5 @@ let receipts = getReceipts();
 console.log({
     part1: reaction(receipts, 1),
     part2: part2(receipts)
-})
+});
 
