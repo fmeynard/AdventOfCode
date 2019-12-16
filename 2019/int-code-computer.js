@@ -102,12 +102,16 @@ class IntCodeComputer {
                     break;
             }
 
-            if (breakAfter > 0 && this.output.length > 0 && this.output.length % breakAfter == 0) {
+            if (breakAfter > 0 && this.output.length > 0 && this.output.length == breakAfter) {
                 break;
             }
         }
 
         return this.output;
+    }
+
+    clone() {
+        return new IntCodeComputer(this.memory);
     }
 }
 
